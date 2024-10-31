@@ -43,35 +43,33 @@ class StudentController extends Controller
     }
 
     public function update(Request $request, Student $student)
-    {
-        $validatedData = $request->validate([
-            'name' => 'string|required',
-            'email' => 'string|email|required',
-            'course' => 'string|required',
-            'year' => 'integer|required'
-        ]);
-
-        $student->update($validatedData);
-        return redirect()->route('students.view');
-    }
-
-    public function destroy(Student $student)
 {
-    $student->delete();
+    $validatedData = $request->validate([
+        'name' => 'string|required',
+        'email' => 'string|email|required',
+        'course' => 'string|required',
+        'year' => 'integer|required'
+    ]);
 
-    // Fetch all students and reorder IDs
-    $students = Student::orderBy('id')->get();
-    $id = 1;
-    foreach ($students as $student) {
-        $student->id = $id;
-        $student->save();
-        $id++;
-    }
+    $student->update($validatedData);
 
-    // Reset the AUTO_INCREMENT value to the next ID
-    DB::statement('ALTER TABLE students AUTO_INCREMENT = ' . ($id));
-
-    return redirect()->route('students.view');
+    return redirect()->route('students.show')->with('success', 'Info updated successfully');
 }
 
+
+    public function destroy(Student $student)
+    {
+        $student->delete();
+        // Fetch all students and reorder IDs
+        $students = Student::orderBy('id')->get();
+        $id = 1;
+        foreach ($students as $student) {
+            $student->id = $id;
+            $student->save();
+            $id++;
+        }
+        // Reset the AUTO_INCREMENT value to the next ID
+        DB::statement('ALTER TABLE students AUTO_INCREMENT = ' . ($id));
+        return redirect()->route('students.view');
+    }
 }

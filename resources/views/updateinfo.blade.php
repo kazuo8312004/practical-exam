@@ -12,7 +12,7 @@
         @method('PUT')
         <section>
             <h1>Edit Note</h1>
-            <div >
+            <div>
                 <div>
                     <label for="name">Name:</label>
                     <input type="text" name="name" id="name" value="{{ $student->name }}">
@@ -22,17 +22,19 @@
                     <input type="text" name="email" id="email" value="{{ $student->email }}">
                 </div>
             </div>
-            <div >
+            <div>
                 <label for="course">Course:</label>
-                <textarea name="content" id="content">{{ $student->course }}</textarea>
+                <input name="content" id="content" value="{{ $student->course }}">
             </div>
-            <div >
+            <div>
                 <label for="year">Year level:</label>
-                <textarea name="year" id="year">{{ $student->year }}</textarea>
+                <input name="year" id="year" value="{{ $student->year }}">
             </div>
-            <div >
-                <a id="myButton" href="{{ route('students.view') }}" ></a>
+            <div>
                 <button type="submit">Update</button>
+                <a href="{{ route('students.view') }}" class="button">Back</a>
+                <a href="{{ route('students.show', $student->id) }}">view</a>
+
             </div>
         </section>
     </form>
