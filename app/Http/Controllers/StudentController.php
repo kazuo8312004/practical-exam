@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Student;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class StudentController extends Controller
 {
@@ -28,7 +29,7 @@ class StudentController extends Controller
         ]);
 
         Student::create($validatedData);
-        return redirect()->route('studentsinfo');
+        return redirect()->route('students.view');
     }
 
     public function show(Student $student)
@@ -51,12 +52,26 @@ class StudentController extends Controller
         ]);
 
         $student->update($validatedData);
-        return redirect()->route('studentsinfo');
+        return redirect()->route('students.view');
     }
 
     public function destroy(Student $student)
-    {
-        $student->delete();
-        return redirect()->route('studentsinfo');
+{
+    $student->delete();
+
+    // Fetch all students and reorder IDs
+    $students = Student::orderBy('id')->get();
+    $id = 1;
+    foreach ($students as $student) {
+        $student->id = $id;
+        $student->save();
+        $id++;
     }
+
+    // Reset the AUTO_INCREMENT value to the next ID
+    DB::statement('ALTER TABLE students AUTO_INCREMENT = ' . ($id));
+
+    return redirect()->route('students.view');
+}
+
 }

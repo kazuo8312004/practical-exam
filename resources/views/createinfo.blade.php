@@ -37,7 +37,7 @@
                 </div>
                 <div class="form-actions">
                     <button type="submit">Save</button>
-                    <a href="{{ route('studentsinfo') }}" class="button">Back</a>
+                    <a href="{{ route('students.view') }}" class="button">Back</a>
                 </div>
             </div>
         </section>

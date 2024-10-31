@@ -20,9 +20,9 @@
         <h1>Students Information Management</h1>
     </header>
     <section>
-        <table>
+        <table bgcolor="pink" width="960">
             <thead>
-                <tr>
+                <tr bgcolor="grey">
                     <th>Id</th>
                     <th>Name</th>
                     <th>Email</th>
@@ -40,8 +40,8 @@
                         <td>{{ $student->course }}</td>
                         <td>{{ $student->year }}</td>
                         <td>
-                            <a href="{{ route('students.updateinfo', ['student' => $student]) }}">update</a>
-                            <a href="{{ route('students.viewinfo', ['student' => $student]) }}">view</a>
+                            <a href="{{ route('students.update', ['student' => $student]) }}">update</a>
+                            <a href="{{ route('students.view', ['student' => $student]) }}">view</a>
                             <form action="{{ route('students.destroy', $student->id) }}" method="POST" onsubmit="confirmDelete(event)">
                                 @csrf
                                 @method('DELETE')
@@ -54,7 +54,7 @@
         </table>
     </section>
     <footer>
-        <a href="{{ route('createinfo') }}">Create</a>
+        <a href="{{ route('students.create') }}">Create</a>
     </footer>
 </body>
 </html>
