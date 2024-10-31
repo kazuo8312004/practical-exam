@@ -24,17 +24,16 @@
             </div>
             <div>
                 <label for="course">Course:</label>
-                <input name="content" id="content" value="{{ $student->course }}">
+                <input type="text" name="course" id="course" value="{{ $student->course }}">
             </div>
             <div>
                 <label for="year">Year level:</label>
-                <input name="year" id="year" value="{{ $student->year }}">
+                <input type="text" name="year" id="year" value="{{ $student->year }}">
             </div>
             <div>
                 <button type="submit">Update</button>
                 <a href="{{ route('students.view') }}" class="button">Back</a>
                 <a href="{{ route('students.show', $student->id) }}">view</a>
-
             </div>
         </section>
     </form>

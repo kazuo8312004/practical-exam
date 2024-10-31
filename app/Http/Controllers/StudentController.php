@@ -53,7 +53,7 @@ class StudentController extends Controller
 
     $student->update($validatedData);
 
-    return redirect()->route('students.show')->with('success', 'Info updated successfully');
+    return redirect()->route('students.view')->with('success', 'Info updated successfully');
 }
 
 
