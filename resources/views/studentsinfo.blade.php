@@ -17,7 +17,7 @@
         <h1>Students Information Management</h1>
     </header>
     <section>
-        <table bgcolor="pink" width="960">
+        <table bgcolor="pink" width="100%">
             <thead>
                 <tr bgcolor="grey">
                     <th>Id</th>
